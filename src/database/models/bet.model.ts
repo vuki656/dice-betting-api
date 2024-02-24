@@ -1,8 +1,12 @@
 import type {
+    Attributes,
     CreationOptional,
+    FindOptions,
     ForeignKey,
+    Identifier,
     InferAttributes,
     InferCreationAttributes,
+    ModelStatic,
     NonAttribute,
 } from 'sequelize'
 import {
@@ -28,6 +32,21 @@ export class Bet extends Model<InferAttributes<Bet>, InferCreationAttributes<Bet
     public declare userIdFk: ForeignKey<User['id']>
 
     public declare win: boolean
+
+    // TODO: share this
+    public static async findByPkOrThrow(
+        this: ModelStatic<Bet>,
+        identifier: Identifier,
+        options?: Omit<FindOptions<Attributes<Bet>>, 'where'>
+    ): Promise<NonAttribute<Bet>> {
+        const bet = await this.findByPk(identifier, options)
+
+        if (!bet) {
+            throw new Error(`Bet by id ${identifier} not found`)
+        }
+
+        return bet
+    }
 }
 
 Bet.init(

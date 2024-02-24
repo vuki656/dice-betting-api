@@ -1,9 +1,11 @@
 import { z } from 'zod'
 
-// userId: Int!, betAmount: Float!, chance: Float!
-
 export const createBetValidation = z.object({
     betAmount: z.number().positive(),
-    chance: z.number().positive(),
-    userId: z.number().int(),
+    chance: z.number().min(0).max(1),
+    userId: z.number().int().positive(),
+})
+
+export const getBetValidation = z.object({
+    id: z.number().int().positive(),
 })

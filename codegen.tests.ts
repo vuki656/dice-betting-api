@@ -7,7 +7,7 @@ import {
 
 const config: CodegenConfig = {
     documents: [
-        './src/**/__tests__/**/*.queries.ts',
+        './src/**/__tests__/**/*.queries.test.ts',
         './src/test/graphql/*.ts',
     ],
     generates: {

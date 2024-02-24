@@ -10,3 +10,12 @@ export const GET_USER = gql`
      }
     ${USER_FRAGMENT}
 `
+
+export const GET_USER_LIST = gql`
+    query GetUserList {
+         getUserList {
+            ...UserPayload
+         }
+     }
+    ${USER_FRAGMENT}
+`

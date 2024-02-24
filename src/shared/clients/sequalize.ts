@@ -1,5 +1,9 @@
 import { Sequelize } from 'sequelize'
-import { env } from '../utils'
+
+import {
+    env,
+    logger,
+} from '../utils'
 
 export const sequelize = new Sequelize(
     env.POSTGRES_DATABASE_NAME,
@@ -8,5 +12,11 @@ export const sequelize = new Sequelize(
     {
         dialect: 'postgres',
         host: env.POSTGRES_HOST,
+        logging: (operation, timing) => {
+            logger.debug('Sequelize', {
+                operation,
+                timing,
+            })
+        },
     }
 )

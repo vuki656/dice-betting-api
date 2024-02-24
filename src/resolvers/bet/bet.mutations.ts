@@ -8,7 +8,7 @@ import { BusinessConstraintError } from '../../shared/errors'
 import { createBetValidation } from './bet.validation'
 import type { BetModule } from './resolver-types.generated'
 
-const BetResolver: BetModule.Resolvers = {
+const BetMutationsResolver: BetModule.Resolvers = {
     Mutation: {
         createBet: async (_, args, context) => {
             const {
@@ -72,4 +72,4 @@ const BetResolver: BetModule.Resolvers = {
     },
 }
 
-export default BetResolver
+export default BetMutationsResolver

@@ -1,6 +1,5 @@
 import { Sequelize } from 'sequelize'
-
-import { env } from './env'
+import { env } from '../utils'
 
 export const sequelize = new Sequelize(
     env.POSTGRES_DATABASE_NAME,

@@ -5,7 +5,7 @@ import {
     env,
     logger,
 } from '../shared'
-import { sequelize } from '../shared/sequalize'
+import { sequelize } from '../shared/clients'
 
 import type { ContextType } from './context'
 import { initializeContext } from './context'

@@ -1,5 +1,8 @@
 import type { CodegenConfig } from '@graphql-codegen/cli'
 
+export const FORMAT_PRETTIER = 'prettier --write --ignore-path=""'
+export const SCHEMA_FILES_LOCATION = './src/**/*.graphql'
+
 const config: CodegenConfig = {
     generates: {
         './src/shared/__generated__/enums.ts': {
@@ -31,10 +34,10 @@ const config: CodegenConfig = {
         },
     },
     hooks: {
-        afterOneFileWrite: ['prettier --write --ignore-path=""'],
+        afterOneFileWrite: [FORMAT_PRETTIER],
     },
     overwrite: true,
-    schema: './src/**/*.graphql'
+    schema: SCHEMA_FILES_LOCATION
 }
 
 export default config

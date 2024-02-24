@@ -17,7 +17,7 @@ import {
 import { resolvers } from './resolvers'
 import { typeDefs } from './typeDefs'
 
-const server = new ApolloServer<ContextType>({
+export const server = new ApolloServer<ContextType>({
     formatError,
     logger,
     plugins: [

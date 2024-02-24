@@ -5,14 +5,20 @@
     "author": "Domagoj Vukovic <off.vukovic@gmail.com>",
     "scripts": {
         "build": "tsc",
+        "database:migrate:down": "sequelize-cli db:migrate:undo:all",
+        "database:migrate:up": "sequelize-cli db:migrate",
+        "database:seed": "sequelize-cli db:seed:all",
+        "database:seed:wipe": "sequelize-cli db:seed:undo:all",
+        "database:setup": "docker compose up -d",
         "dev": "nodemon",
+        "generate:database:migration": "sequelize-cli migration:generate --name",
+        "generate:database:seed": "sequelize-cli seed:generate --name",
         "generate:types:graphql:dev": "graphql-codegen --config='./codegen.ts'",
         "lint": "yarn lint:prettier && yarn lint:cspell && yarn lint:eslint",
         "lint:cspell": "cspell --no-progress --unique '**'",
         "lint:eslint": "eslint ./src/**/*.{ts,js} --quiet --cache",
         "lint:fix": "yarn lint:prettier --write && yarn lint:eslint --fix && yarn lint:cspell",
-        "lint:prettier": "prettier --check \"**/*.{yaml,yml,json,md,graphql}\"",
-        "setup": "docker compose up -d"
+        "lint:prettier": "prettier --check \"**/*.{yaml,yml,json,md,graphql}\""
     },
     "dependencies": {
         "@apollo/server": "^4.10.0",
@@ -25,9 +31,11 @@
         "pg-hstore": "^2.3.4",
         "pino": "^8.19.0",
         "sequelize": "^6.37.1",
+        "sequelize-cli": "^6.6.2",
         "zod": "^3.22.4"
     },
     "devDependencies": {
+        "@faker-js/faker": "^8.4.1",
         "@graphql-codegen/cli": "^5.0.2",
         "@graphql-codegen/graphql-modules-preset": "^4.0.6",
         "@graphql-codegen/typescript-resolvers": "^4.0.6",

@@ -1,1 +1,1 @@
-export * from './sequalize'
+export * from './sequelize'

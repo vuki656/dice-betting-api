@@ -13,8 +13,12 @@ import { resolvers } from './resolvers'
 import { typeDefs } from './typeDefs'
 
 const server = new ApolloServer<ContextType>({
+    plugins: [
+        // TODO:
+    ],
     resolvers,
     typeDefs,
+    // TODO: other stuff??
 })
 
 export async function startServer() {

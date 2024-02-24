@@ -10,7 +10,8 @@ export const sequelize = new Sequelize({
     dialect: 'postgres',
     host: env.POSTGRES_HOST,
     logging: (operation, timing) => {
-        logger.debug('Sequelize', {
+        logger.debug({
+            name: "Sequelize",
             operation,
             timing,
         })

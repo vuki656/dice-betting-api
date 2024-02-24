@@ -10,7 +10,7 @@ type Bet {
 type Query {
     getBet(id: Int!): Bet!
     getBetList: [Bet!]!
-    getBestBetPerUser(limit: Int!): [Bet!]!
+    getBestBetPerUser(limit: Int): [Bet!]!
 }
 
 type Mutation {

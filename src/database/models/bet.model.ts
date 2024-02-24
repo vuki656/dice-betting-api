@@ -16,7 +16,7 @@ import {
 
 import { sequelize } from '../../shared/clients'
 
-import type { User } from './user.model'
+import { User } from './user.model'
 
 export class Bet extends Model<InferAttributes<Bet>, InferCreationAttributes<Bet>> {
     // TODO: share this
@@ -59,7 +59,6 @@ Bet.init(
             type: DataTypes.INTEGER,
         },
         payout: DataTypes.FLOAT,
-        userIdFk: DataTypes.INTEGER,
         win: DataTypes.BOOLEAN,
     },
     {
@@ -68,3 +67,14 @@ Bet.init(
         timestamps: false,
     }
 )
+
+User.hasMany(Bet, {
+    as: 'bets',
+    foreignKey: 'userIdFk',
+    sourceKey: 'id',
+})
+
+Bet.belongsTo(User, {
+    as: 'user',
+    foreignKey: 'userIdFk',
+})

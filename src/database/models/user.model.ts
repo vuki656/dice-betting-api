@@ -15,7 +15,7 @@ import {
 
 import { sequelize } from '../../shared/clients'
 
-import type { Bet } from './bet.model'
+import { Bet } from './bet.model'
 
 export class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
     public static async findByPkOrThrow(
@@ -56,3 +56,4 @@ User.init(
         timestamps: false,
     }
 )
+

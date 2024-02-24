@@ -12,7 +12,7 @@ export class BetFactory {
         return {
             amount: faker.number.float({ fractionDigits: 2, min: 1 }),
             chance: faker.number.float({ fractionDigits: 1, max: 1, min: 0 }),
-            payout: win ? faker.number.float({ min: 1 }) : 0,
+            payout: win ? faker.number.float({ min: 1, max: 3000, fractionDigits: 2 }) : 0,
             win,
             ...bet,
         }

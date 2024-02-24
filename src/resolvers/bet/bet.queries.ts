@@ -1,5 +1,3 @@
-import { Sequelize } from 'sequelize'
-
 import { Bet } from '../../database/models'
 
 import {
@@ -7,25 +5,24 @@ import {
     getBetValidation,
 } from './bet.validation'
 import type { BetModule } from './resolver-types.generated'
+import { sequelize } from '../../shared/clients'
 
 const BetQueriesResolver: BetModule.Resolvers = {
     Query: {
         getBestBetPerUser: async (_, args, context) => {
             const { limit } = context.validateInput(getBestBetPerUserValidation, args)
 
-            const bets = await Bet.findAll({
-                attributes: [
-                    'userId',
-                    [Sequelize.fn('MAX', Sequelize.col('amount')), 'maxBetAmount'],
-                ],
-                group: [
-                    'userId',
-                ],
-                limit,
-                order: [
-                    [Sequelize.literal('maxBetAmount'), 'DESC'],
-                ],
-            })
+            const [bets] = await sequelize.query(`
+                SELECT bet.*
+                    FROM public.bets bet
+                    WHERE payout = (
+                        SELECT MAX(payout)
+                        FROM bets
+                        WHERE "userIdFk" = bet."userIdFk"
+                    )
+                    ORDER BY payout DESC
+                    LIMIT ${limit};
+            `) as [Bet[], unknown]
 
             return bets.map((bet) => {
                 return {

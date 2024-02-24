@@ -13,7 +13,9 @@ import { CREATE_BET } from './bet.queries.test'
 
 describe('when `createBet` mutation is called', () => {
     it('should create bet', async () => {
-        const user = await UserFactory.create()
+        const user = await UserFactory.create({
+            balance: 500
+        })
 
         const variables: CreateBetMutationVariables = {
             betAmount: 200,
@@ -41,7 +43,7 @@ describe('when `createBet` mutation is called', () => {
     })
 
     it('should correctly update user and bet if bet is won', async () => {
-        const user = await UserFactory.create()
+        const user = await UserFactory.create({ balance: 3000 })
 
         const variables: CreateBetMutationVariables = {
             betAmount: 200,
@@ -74,7 +76,7 @@ describe('when `createBet` mutation is called', () => {
 
     it('should correctly update user and bet if bet is lost', async () => {
         const user = await UserFactory.create({
-            balance: 500,
+            balance: 3000,
         })
 
         const variables: CreateBetMutationVariables = {

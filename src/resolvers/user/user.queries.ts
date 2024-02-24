@@ -4,6 +4,9 @@ import { getUserValidation } from './user.validation'
 
 const UserQueriesResolver: UserModule.Resolvers = {
     Query: {
+        getUserList: async () => {
+            return User.findAll()
+        },
         getUser: async (_, args, context) => {
             const { id } = context.validateInput(getUserValidation, args)
 

@@ -35,13 +35,6 @@ const BetMutationsResolver: BetModule.Resolvers = {
 
                 const payout = betAmount * BET_MULTIPLIER
 
-                await User.update({ balance: user.balance - betAmount }, {
-                    transaction,
-                    where: {
-                        id: userId,
-                    },
-                })
-
                 const createdBet = await Bet.create({
                     amount: betAmount,
                     chance,
@@ -51,7 +44,14 @@ const BetMutationsResolver: BetModule.Resolvers = {
                 }, { transaction })
 
                 if (win) {
-                    await User.update({ balance: user.balance + payout }, {
+                    await User.update({ balance: user.balance + (payout - betAmount) }, {
+                        transaction,
+                        where: {
+                            id: user.id,
+                        },
+                    })
+                } else {
+                    await User.update({ balance: user.balance - betAmount }, {
                         transaction,
                         where: {
                             id: user.id,

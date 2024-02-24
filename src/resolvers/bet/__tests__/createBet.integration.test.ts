@@ -74,7 +74,10 @@ describe('when `createBet` mutation is called', () => {
 
         const { balance } = await User.findByPkOrThrow(user.id)
 
-        expect(balance).toBeCloseTo(user.balance + (variables.betAmount * BET_MULTIPLIER))
+        const payout = variables.betAmount * BET_MULTIPLIER
+        const wonAmount = payout - (response.body?.singleResult.data?.createBet.betAmount ?? 0)
+
+        expect(balance).toBeCloseTo(user.balance + wonAmount)
     })
 
     it('should correctly update user and bet if bet is lost', async () => {

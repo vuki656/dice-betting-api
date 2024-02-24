@@ -36,7 +36,7 @@ const BetResolver: BetModule.Resolvers = {
                 const createdBet = await Bet.create({
                     amount: betAmount,
                     chance,
-                    payout,
+                    payout: win ? 0 : payout,
                     userIdFk: userId,
                     win,
                 }, { transaction })

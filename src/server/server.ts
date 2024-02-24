@@ -1,11 +1,11 @@
 import { ApolloServer } from '@apollo/server'
 import { startStandaloneServer } from '@apollo/server/standalone'
 
+import { sequelize } from '../shared/clients'
 import {
     env,
     logger,
-} from '../shared'
-import { sequelize } from '../shared/clients'
+} from '../shared/utils'
 
 import type { ContextType } from './context'
 import { initializeContext } from './context'

@@ -8,7 +8,7 @@ module.exports = {
         await queryInterface.dropTable('users')
     },
     async up(queryInterface, Sequelize) {
-        return queryInterface.createTable('users', {
+        await queryInterface.createTable('users', {
             balance: {
                 allowNull: false,
                 type: Sequelize.DataTypes.FLOAT,

@@ -5,9 +5,9 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
     async down(queryInterface) {
-        queryInterface.dropDatabase('main')
+        await queryInterface.dropDatabase('main')
     },
     async up(queryInterface) {
-        queryInterface.createDatabase('main')
+        await queryInterface.createDatabase('main')
     },
 }

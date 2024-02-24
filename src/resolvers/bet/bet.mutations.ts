@@ -33,7 +33,7 @@ const BetResolver: BetModule.Resolvers = {
 
                 const payout = betAmount * 1.25
 
-                const bet = await Bet.create({
+                const createdBet = await Bet.create({
                     amount: betAmount,
                     chance,
                     payout,
@@ -57,7 +57,7 @@ const BetResolver: BetModule.Resolvers = {
                     })
                 }
 
-                return bet
+                return createdBet
             })
 
             return {

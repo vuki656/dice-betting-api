@@ -11,7 +11,7 @@ export const sequelize = new Sequelize({
     host: env.POSTGRES_HOST,
     logging: (operation, timing) => {
         logger.debug({
-            name: "Sequelize",
+            name: 'Sequelize',
             operation,
             timing,
         })

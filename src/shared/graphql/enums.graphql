@@ -1,4 +1,5 @@
 enum ErrorCodeEnum {
     INPUT_VALIDATION
     BUSINESS_CONSTRAINT
+    UNEXPECTED
 }

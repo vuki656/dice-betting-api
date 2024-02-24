@@ -10,7 +10,7 @@ module.exports = {
         await queryInterface.bulkDelete('users', {}, {})
     },
     async up(queryInterface) {
-        queryInterface.bulkInsert(
+        await queryInterface.bulkInsert(
             'users',
             [...new Array(10)].map(() => {
                 return {

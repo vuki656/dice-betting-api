@@ -9,16 +9,23 @@ import {
 
 import type { ContextType } from './context'
 import { initializeContext } from './context'
+import { formatError } from './formatError'
+import {
+    ApolloPluginLandingPage,
+    ApolloPluginLogger,
+} from './plugins'
 import { resolvers } from './resolvers'
 import { typeDefs } from './typeDefs'
 
 const server = new ApolloServer<ContextType>({
+    formatError,
+    logger,
     plugins: [
-        // TODO:
+        ApolloPluginLandingPage,
+        ApolloPluginLogger,
     ],
     resolvers,
     typeDefs,
-    // TODO: other stuff??
 })
 
 export async function startServer() {

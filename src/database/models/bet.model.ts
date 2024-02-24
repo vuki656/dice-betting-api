@@ -35,8 +35,8 @@ Bet.init(
         amount: DataTypes.FLOAT,
         chance: DataTypes.FLOAT,
         id: {
-            primaryKey: true,
             autoIncrement: true,
+            primaryKey: true,
             type: DataTypes.INTEGER,
         },
         payout: DataTypes.FLOAT,

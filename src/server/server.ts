@@ -5,6 +5,7 @@ import {
     env,
     logger,
 } from '../shared'
+import { sequelize } from '../shared/sequalize'
 
 import type { ContextType } from './context'
 import { initializeContext } from './context'
@@ -17,6 +18,8 @@ const server = new ApolloServer<ContextType>({
 })
 
 export async function startServer() {
+    await sequelize.authenticate()
+
     await startStandaloneServer(server, {
         context: initializeContext,
         listen: {

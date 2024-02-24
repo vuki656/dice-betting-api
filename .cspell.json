@@ -3,5 +3,5 @@
     "cache": {
         "useCache": true
     },
-    "ignoreWords": ["vuki", "domagoj", "vukovic", "rimac", "codegen", "envalid"]
+    "ignoreWords": ["vuki", "domagoj", "vukovic", "rimac", "codegen", "envalid", "hstore", "sequalize"]
 }

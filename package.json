@@ -11,7 +11,7 @@
         "lint:cspell": "cspell --no-progress --unique '**'",
         "lint:eslint": "eslint ./src/**/*.{ts,js} --quiet --cache",
         "lint:fix": "yarn lint:prettier --write && yarn lint:eslint --fix && yarn lint:cspell",
-        "lint:prettier": "prettier --check \"**/*.{yaml,yml,json,md,gql,prisma}\""
+        "lint:prettier": "prettier --check \"**/*.{yaml,yml,json,md,graphql}\""
     },
     "dependencies": {
         "@apollo/server": "^4.10.0",

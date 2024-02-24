@@ -3,5 +3,8 @@
     "version": "1.0.0",
     "repository": "git@github.com:vuki656/dice-betting-api.git",
     "author": "Domagoj Vukovic <off.vukovic@gmail.com>",
-    "packageManager": "yarn@4.1.0"
+    "packageManager": "yarn@4.1.0",
+    "devDependencies": {
+        "typescript": "^5.3.3"
+    }
 }

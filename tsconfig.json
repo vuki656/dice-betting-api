@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "allowJs": true,
+        "forceConsistentCasingInFileNames": true,
+        "strictNullChecks": true,
+        "noUncheckedIndexedAccess": true,
+        "strict": true,
+        "resolveJsonModule": true,
+        "outDir": "dist",
+        "lib": ["ES2023"],
+        "target": "ES2023",
+        "module": "commonjs",
+        "moduleResolution": "Node10",
+        "esModuleInterop": true,
+        "types": ["node", "jest"],
+        "skipLibCheck": true
+    },
+    "include": ["src"]
+}

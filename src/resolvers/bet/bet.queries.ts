@@ -17,6 +17,20 @@ const BetQueriesResolver: BetModule.Resolvers = {
                 id: bet.id,
                 userId: bet.userIdFk
             }
+        },
+        getBetList: async () => {
+            const bets = await Bet.findAll()
+
+            return bets.map((bet) => {
+                return {
+                    chance: bet.chance,
+                    win: bet.win,
+                    payout: bet.payout,
+                    betAmount: bet.amount,
+                    id: bet.id,
+                    userId: bet.userIdFk
+                }
+            })
         }
     }
 }

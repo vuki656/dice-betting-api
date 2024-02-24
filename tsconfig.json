@@ -12,7 +12,7 @@
         "module": "commonjs",
         "moduleResolution": "Node10",
         "esModuleInterop": true,
-        "types": ["node", "jest"],
+        "types": ["node"],
         "skipLibCheck": true
     },
     "include": ["src"]

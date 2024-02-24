@@ -4,18 +4,38 @@
     "repository": "git@github.com:vuki656/dice-betting-api.git",
     "author": "Domagoj Vukovic <off.vukovic@gmail.com>",
     "scripts": {
+        "build": "tsc",
+        "dev": "nodemon",
+        "generate:types:graphql:dev": "graphql-codegen --config='./codegen.ts'",
         "lint": "yarn lint:prettier && yarn lint:cspell && yarn lint:eslint",
         "lint:cspell": "cspell --no-progress --unique '**'",
         "lint:eslint": "eslint ./src/**/*.{ts,js} --quiet --cache",
         "lint:fix": "yarn lint:prettier --write && yarn lint:eslint --fix && yarn lint:cspell",
         "lint:prettier": "prettier --check \"**/*.{yaml,yml,json,md,gql,prisma}\""
     },
+    "dependencies": {
+        "@apollo/server": "^4.10.0",
+        "@graphql-tools/load-files": "^7.0.0",
+        "@graphql-tools/merge": "^9.0.3",
+        "dotenv": "^16.4.4",
+        "envalid": "^8.0.0",
+        "graphql": "^16.8.1",
+        "pino": "^8.19.0",
+        "zod": "^3.22.4"
+    },
     "devDependencies": {
+        "@graphql-codegen/cli": "^5.0.2",
+        "@graphql-codegen/graphql-modules-preset": "^4.0.6",
+        "@graphql-codegen/typescript-resolvers": "^4.0.6",
         "@rimac-technology/style-guide": "^9.2.1",
-        "@types/eslint": "^8.56.2",
-        "cspell": "^8.3.2",
-        "eslint": "^8.56.0",
+        "@types/eslint": "^8.56.3",
+        "@types/node": "^20.11.20",
+        "cspell": "^8.4.1",
+        "eslint": "^8.57.0",
+        "nodemon": "^3.1.0",
+        "pino-pretty": "^10.3.1",
         "prettier": "^3.2.5",
+        "ts-node": "^10.9.2",
         "typescript": "^5.3.3"
     },
     "packageManager": "yarn@4.1.0"

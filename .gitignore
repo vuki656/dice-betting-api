@@ -10,3 +10,13 @@ TODO.md
 # Cache
 .eslintcache
 .cspellcache
+
+# Generated
+*.generated.*
+schema.graphql
+coverage
+__generated__
+dist
+
+# Env
+.env

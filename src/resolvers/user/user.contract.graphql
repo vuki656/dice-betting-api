@@ -1,0 +1,9 @@
+type User {
+    id: Int!
+    name: String!
+    balance: Float!
+}
+
+type Query {
+    getUser(id: Int!): User!
+}

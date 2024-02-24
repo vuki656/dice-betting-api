@@ -1,0 +1,9 @@
+{
+    "delay": 2000,
+    "watch": ["src"],
+    "exec": "ts-node ./src/index.ts | pino-pretty",
+    "ext": "ts",
+    "env": {
+        "NODE_ENV": "development"
+    }
+}

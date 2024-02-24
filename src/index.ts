@@ -1,1 +1,5 @@
-export const a = 1
+import 'dotenv/config'
+
+import { startServer } from './server'
+
+void startServer()

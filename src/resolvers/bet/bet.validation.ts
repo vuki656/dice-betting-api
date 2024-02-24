@@ -9,3 +9,7 @@ export const createBetValidation = z.object({
 export const getBetValidation = z.object({
     id: z.number().int().positive(),
 })
+
+export const getBestBetPerUserValidation = z.object({
+    limit: z.number().int().positive().optional()
+})

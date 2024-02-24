@@ -3,8 +3,20 @@
     "version": "1.0.0",
     "repository": "git@github.com:vuki656/dice-betting-api.git",
     "author": "Domagoj Vukovic <off.vukovic@gmail.com>",
-    "packageManager": "yarn@4.1.0",
+    "scripts": {
+        "lint": "yarn lint:prettier && yarn lint:cspell && yarn lint:eslint",
+        "lint:cspell": "cspell --no-progress --unique '**'",
+        "lint:eslint": "eslint ./src/**/*.{ts,js} --quiet --cache",
+        "lint:fix": "yarn lint:prettier --write && yarn lint:eslint --fix && yarn lint:cspell",
+        "lint:prettier": "prettier --check \"**/*.{yaml,yml,json,md,gql,prisma}\""
+    },
     "devDependencies": {
+        "@rimac-technology/style-guide": "^9.2.1",
+        "@types/eslint": "^8.56.2",
+        "cspell": "^8.3.2",
+        "eslint": "^8.56.0",
+        "prettier": "^3.2.5",
         "typescript": "^5.3.3"
-    }
+    },
+    "packageManager": "yarn@4.1.0"
 }

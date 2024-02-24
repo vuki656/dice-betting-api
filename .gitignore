@@ -1,2 +1,12 @@
+# Install
 node_modules
+
+# Yarn
 .yarn/install-state.gz
+
+# Misc
+TODO.md
+
+# Cache
+.eslintcache
+.cspellcache

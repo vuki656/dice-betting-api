@@ -1,28 +1,22 @@
-import { z } from 'zod'
+import { zc } from '../../shared/utils'
 
-export const createBetValidation = z.object({
-    betAmount: z
+export const createBetValidation = zc.object({
+    betAmount: zc
         .number()
         .positive(),
-    chance: z
+    chance: zc
         .number()
         .min(0)
         .max(1),
-    userId: z
-        .number()
-        .int()
-        .positive(),
+    userId: zc.intId,
 })
 
-export const getBetValidation = z.object({
-    id: z
-        .number()
-        .int()
-        .positive(),
+export const getBetValidation = zc.object({
+    id: zc.intId,
 })
 
-export const getBestBetPerUserValidation = z.object({
-    limit: z
+export const getBestBetPerUserValidation = zc.object({
+    limit: zc
         .number()
         .int()
         .positive()

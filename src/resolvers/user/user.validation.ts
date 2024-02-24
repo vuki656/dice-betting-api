@@ -1,8 +1,5 @@
-import { z } from 'zod'
+import { zc } from '../../shared/utils'
 
-export const getUserValidation = z.object({
-    id: z
-        .number()
-        .int()
-        .positive(),
+export const getUserValidation = zc.object({
+    id: zc.intId,
 })

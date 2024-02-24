@@ -1,18 +1,16 @@
-import { faker } from '@faker-js/faker'
 import type { CreationAttributes } from 'sequelize'
 
 import { Bet } from '../../database/models'
+import { faker } from '../utils'
 
-// TODO: add interface
 export class BetFactory {
     public static build(bet?: Partial<CreationAttributes<Bet>>): CreationAttributes<Bet> {
         const win = faker.datatype.boolean()
 
-        // TODO: user id
         return {
-            amount: faker.number.float({ fractionDigits: 2, min: 1 }),
-            chance: faker.number.float({ fractionDigits: 1, max: 1, min: 0 }),
-            payout: win ? faker.number.float({ min: 1, max: 3000, fractionDigits: 2 }) : 0,
+            amount: faker.betAmount(),
+            chance: faker.betChance(),
+            payout: win ? faker.betPayout() : 0,
             win,
             ...bet,
         }

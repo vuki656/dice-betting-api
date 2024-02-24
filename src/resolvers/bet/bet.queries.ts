@@ -1,11 +1,11 @@
 import { Bet } from '../../database/models'
+import { sequelize } from '../../shared/clients'
 
 import {
     getBestBetPerUserValidation,
     getBetValidation,
 } from './bet.validation'
 import type { BetModule } from './resolver-types.generated'
-import { sequelize } from '../../shared/clients'
 
 const BetQueriesResolver: BetModule.Resolvers = {
     Query: {

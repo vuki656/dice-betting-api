@@ -1,7 +1,10 @@
 import { User } from '../../../database/models'
 import { ErrorCodeEnum } from '../../../shared/__generated__/enums'
 import { UserFactory } from '../../../test/factories'
-import { executeOperation } from '../../../test/utils'
+import {
+    executeOperation,
+    faker,
+} from '../../../test/utils'
 import type {
     BetPayloadFragment,
     CreateBetMutation,
@@ -14,12 +17,12 @@ import { CREATE_BET } from './bet.queries.test'
 describe('when `createBet` mutation is called', () => {
     it('should create bet', async () => {
         const user = await UserFactory.create({
-            balance: 500
+            balance: 500,
         })
 
         const variables: CreateBetMutationVariables = {
             betAmount: 200,
-            chance: 0.3,
+            chance: faker.betChance(),
             userId: user.id,
         }
 
@@ -117,7 +120,7 @@ describe('when `createBet` mutation is called', () => {
                 query: CREATE_BET,
                 variables: {
                     betAmount: -1,
-                    chance: 0.3,
+                    chance: faker.betChance(),
                     userId: 1,
                 },
             })
@@ -138,7 +141,7 @@ describe('when `createBet` mutation is called', () => {
                 query: CREATE_BET,
                 variables: {
                     betAmount: 200,
-                    chance: 0.3,
+                    chance: faker.betChance(),
                     userId: user.id,
                 },
             })

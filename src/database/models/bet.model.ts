@@ -19,7 +19,6 @@ import { sequelize } from '../../shared/clients'
 import { User } from './user.model'
 
 export class Bet extends Model<InferAttributes<Bet>, InferCreationAttributes<Bet>> {
-    // TODO: share this
     public static async findByPkOrThrow(
         this: ModelStatic<Bet>,
         identifier: Identifier,

@@ -15,7 +15,7 @@ import {
 
 import { sequelize } from '../../shared/clients'
 
-import { Bet } from './bet.model'
+import type { Bet } from './bet.model'
 
 export class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
     public static async findByPkOrThrow(

@@ -1,13 +1,12 @@
-import { faker } from '@faker-js/faker'
 import type { CreationAttributes } from 'sequelize'
 
 import { User } from '../../database/models'
+import { faker } from '../utils'
 
-// TODO: add interface
 export class UserFactory {
     public static build(user?: Partial<CreationAttributes<User>>): CreationAttributes<User> {
         return {
-            balance: faker.number.float({ fractionDigits: 2, max: 3000, min: 0 }),
+            balance: faker.userBalance(),
             name: faker.person.fullName(),
             ...user,
         }

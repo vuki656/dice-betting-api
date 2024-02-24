@@ -19,20 +19,6 @@ import { sequelize } from '../../shared/clients'
 import type { User } from './user.model'
 
 export class Bet extends Model<InferAttributes<Bet>, InferCreationAttributes<Bet>> {
-    public declare amount: number
-
-    public declare chance: number
-
-    public declare id: CreationOptional<number>
-
-    public declare payout: number
-
-    public declare user?: NonAttribute<User>
-
-    public declare userIdFk: ForeignKey<User['id']>
-
-    public declare win: boolean
-
     // TODO: share this
     public static async findByPkOrThrow(
         this: ModelStatic<Bet>,
@@ -47,6 +33,20 @@ export class Bet extends Model<InferAttributes<Bet>, InferCreationAttributes<Bet
 
         return bet
     }
+
+    public declare amount: number
+
+    public declare chance: number
+
+    public declare id: CreationOptional<number>
+
+    public declare payout: number
+
+    public declare user?: NonAttribute<User>
+
+    public declare userIdFk: ForeignKey<User['id']>
+
+    public declare win: boolean
 }
 
 Bet.init(

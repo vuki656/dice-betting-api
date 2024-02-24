@@ -1,15 +1,30 @@
 import { z } from 'zod'
 
 export const createBetValidation = z.object({
-    betAmount: z.number().positive(),
-    chance: z.number().min(0).max(1),
-    userId: z.number().int().positive(),
+    betAmount: z
+        .number()
+        .positive(),
+    chance: z
+        .number()
+        .min(0)
+        .max(1),
+    userId: z
+        .number()
+        .int()
+        .positive(),
 })
 
 export const getBetValidation = z.object({
-    id: z.number().int().positive(),
+    id: z
+        .number()
+        .int()
+        .positive(),
 })
 
 export const getBestBetPerUserValidation = z.object({
-    limit: z.number().int().positive().optional()
+    limit: z
+        .number()
+        .int()
+        .positive()
+        .optional(),
 })

@@ -1,7 +1,7 @@
 import {
     ApolloServerPluginLandingPageLocalDefault,
-    ApolloServerPluginLandingPageProductionDefault
-} from '@apollo/server/plugin/landingPage/default';
+    ApolloServerPluginLandingPageProductionDefault,
+} from '@apollo/server/plugin/landingPage/default'
 
 import { env } from '../../shared/utils'
 

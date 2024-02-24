@@ -1,22 +1,55 @@
-import { Sequelize } from 'sequelize';
-import { Bet, User } from '../../database/models';
-import { getBestBetPerUserValidation, getBetValidation } from './bet.validation';
-import { BetModule } from './resolver-types.generated';
+import { Sequelize } from 'sequelize'
+
+import { Bet } from '../../database/models'
+
+import {
+    getBestBetPerUserValidation,
+    getBetValidation,
+} from './bet.validation'
+import type { BetModule } from './resolver-types.generated'
 
 const BetQueriesResolver: BetModule.Resolvers = {
     Query: {
+        getBestBetPerUser: async (_, args, context) => {
+            const { limit } = context.validateInput(getBestBetPerUserValidation, args)
+
+            const bets = await Bet.findAll({
+                attributes: [
+                    'userId',
+                    [Sequelize.fn('MAX', Sequelize.col('amount')), 'maxBetAmount'],
+                ],
+                group: [
+                    'userId',
+                ],
+                limit,
+                order: [
+                    [Sequelize.literal('maxBetAmount'), 'DESC'],
+                ],
+            })
+
+            return bets.map((bet) => {
+                return {
+                    betAmount: bet.amount,
+                    chance: bet.chance,
+                    id: bet.id,
+                    payout: bet.payout,
+                    userId: bet.userIdFk,
+                    win: bet.win,
+                }
+            })
+        },
         getBet: async (_, args, context) => {
             const { id } = context.validateInput(getBetValidation, args)
 
             const bet = await Bet.findByPkOrThrow(id)
 
             return {
-                chance: bet.chance,
-                win: bet.win,
-                payout: bet.payout,
                 betAmount: bet.amount,
+                chance: bet.chance,
                 id: bet.id,
-                userId: bet.userIdFk
+                payout: bet.payout,
+                userId: bet.userIdFk,
+                win: bet.win,
             }
         },
         getBetList: async () => {
@@ -24,47 +57,16 @@ const BetQueriesResolver: BetModule.Resolvers = {
 
             return bets.map((bet) => {
                 return {
-                    chance: bet.chance,
-                    win: bet.win,
-                    payout: bet.payout,
                     betAmount: bet.amount,
+                    chance: bet.chance,
                     id: bet.id,
-                    userId: bet.userIdFk
+                    payout: bet.payout,
+                    userId: bet.userIdFk,
+                    win: bet.win,
                 }
             })
         },
-        getBestBetPerUser: async (_, args, context) => {
-            const { limit } = context.validateInput(getBestBetPerUserValidation, args)
-
-
-            const bets = await Bet.findAll({
-                attributes: [
-                    'userId',
-                    [Sequelize.fn('MAX', Sequelize.col('amount')), 'maxBetAmount']
-                ],
-                group: [
-                    'userId'
-                ],
-                limit,
-                order: [
-                    [ Sequelize.literal('maxBetAmount'), 'DESC' ]
-                ]
-            })
-
-            console.log(bets)
-
-            return bets.map((bet) => {
-                return {
-                    chance: bet.chance,
-                    win: bet.win,
-                    payout: bet.payout,
-                    betAmount: bet.amount,
-                    id: bet.id,
-                    userId: bet.userIdFk
-                }
-            })
-        }
-    }
+    },
 }
 
 export default BetQueriesResolver

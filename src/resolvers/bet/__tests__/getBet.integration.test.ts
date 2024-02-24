@@ -15,6 +15,7 @@ import { GET_BET } from './bet.queries.test'
 describe('when `getBet` query is called', () => {
     it('should return bet', async () => {
         const user = await UserFactory.create()
+
         const bet = await BetFactory.create({
             userIdFk: user.id,
         })

@@ -10,13 +10,7 @@ const UserQueriesResolver: UserModule.Resolvers = {
         getUser: async (_, args, context) => {
             const { id } = context.validateInput(getUserValidation, args)
 
-            const user = await User.findByPkOrThrow(id)
-            
-            return {
-                balance: user.balance,
-                id: user.id,
-                name: user.name,
-            }
+            return User.findByPkOrThrow(id)
         },
     },
 }

@@ -8,6 +8,8 @@ import { BusinessConstraintError } from '../../shared/errors'
 import { createBetValidation } from './bet.validation'
 import type { BetModule } from './resolver-types.generated'
 
+export const BET_MULTIPLIER = 1.25
+
 const BetMutationsResolver: BetModule.Resolvers = {
     Mutation: {
         createBet: async (_, args, context) => {
@@ -31,7 +33,7 @@ const BetMutationsResolver: BetModule.Resolvers = {
             const bet = await sequelize.transaction(async (transaction) => {
                 const win = Math.random() < chance
 
-                const payout = betAmount * 1.25
+                const payout = betAmount * BET_MULTIPLIER
 
                 await User.update({ balance: user.balance - betAmount }, {
                     transaction,
@@ -43,7 +45,7 @@ const BetMutationsResolver: BetModule.Resolvers = {
                 const createdBet = await Bet.create({
                     amount: betAmount,
                     chance,
-                    payout: win ? 0 : payout,
+                    payout: win ? payout : 0,
                     userIdFk: userId,
                     win,
                 }, { transaction })

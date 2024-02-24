@@ -16,17 +16,11 @@ const config: CodegenConfig = {
         './src/resolvers/': {
             config: {
                 contextType: '../server/context/context.types#CodegenContextType',
-                defaultMapper: 'DeepPartial<{T}>',
                 useIndexSignature: true,
             },
             plugins: [
                 'typescript',
                 'typescript-resolvers',
-                {
-                    add: {
-                        content: 'type DeepPartial<T> = T extends object ? { [P in keyof T]?: DeepPartial<T[P]>; } : T;',
-                    },
-                },
             ],
             preset: 'graphql-modules',
             presetConfig: {
